@@ -7,8 +7,9 @@
 
 ## Shared package (packages/shared)
 - Behavior + semantics only. No colors, fonts, radii, shadows, spacing scales, or any visual language.
-- Exports: `Img`, `Reveal`/`useInView`/`usePrefersReducedMotion`, `FormKit`/`Field`/`SubmitButton`/`FormSuccess`/`FormError`/`useFormKit`, `buildMetadata`/`jsonLd`/`localBusinessSchema`, `Container`.
+- Exports: `Img`, `Reveal`/`useInView`/`usePrefersReducedMotion`, `FormKit`/`Field`/`SubmitButton`/`FormSuccess`/`FormError`/`useFormKit`/`useFormKitState`, `buildMetadata`/`jsonLd`/`localBusinessSchema`, `Container`.
 - Adding an export? It must be visual-agnostic. Log it in DECISIONS.md.
+- Form consumers must read reactive state via `useFormKitState` (not `form.formState`), and wrap fields in a `<form onSubmit={form.handleSubmit((v) => submit(v))}>` — otherwise validation errors never render.
 
 ## Per-site design
 - Max 2 font families (display + body).
@@ -37,3 +38,9 @@
 - Heartbeat: update `state.md` + build log after every step and before stopping.
 - QA gate (12 dimensions) recorded in `docs/build-logs/<ID>.md` before a site is "done".
 - 30-Site Test overlap check after each site.
+
+## Testing
+- Unit tests: Vitest + Testing Library in `packages/shared` (pure logic + form kit). `pnpm test:unit`.
+- Smoke tests: Playwright in `apps/h1-quiet-luxury` (home, reserve form, routes, 404). `pnpm test:e2e`.
+- `pnpm test` runs both. Tests are part of the completion gate alongside lint / typecheck / build.
+- New shared exports get a unit test; new H1 routes/behaviors get a smoke test.

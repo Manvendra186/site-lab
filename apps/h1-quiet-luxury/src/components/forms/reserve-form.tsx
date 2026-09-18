@@ -7,6 +7,7 @@ import {
   FormSuccess,
   SubmitButton,
   useFormKit,
+  useFormKitState,
 } from "@site-lab/shared";
 import { z } from "zod";
 import { ROOMS } from "@/data/rooms";
@@ -24,10 +25,10 @@ const schema = z.object({
 type Values = z.infer<typeof schema>;
 
 function ReserveFields() {
-  const { form } = useFormKit<typeof schema>();
-  const errors = form.formState.errors;
+  const { form, submit } = useFormKit<typeof schema>();
+  const { errors } = useFormKitState<typeof schema>();
   return (
-    <div className="grid gap-8">
+    <form className="grid gap-8" onSubmit={form.handleSubmit((v) => submit(v))} noValidate>
       <div className="grid gap-8 sm:grid-cols-2">
         <Field id="name" label="Name" required error={errors.name?.message}>
           <input type="text" placeholder="Your name" {...form.register("name")} />
@@ -77,7 +78,7 @@ function ReserveFields() {
         title="Thank you — we have your request."
         body="This is a demonstration; nothing was sent or stored. For a real stay we would reply within one working day."
       />
-    </div>
+    </form>
   );
 }
 

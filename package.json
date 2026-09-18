@@ -12,7 +12,10 @@
     "dev:all": "node scripts/dev-all.mjs",
     "build": "pnpm -r build",
     "lint": "pnpm -r lint",
-    "typecheck": "pnpm -r typecheck"
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "test:unit": "pnpm --filter @site-lab/shared test",
+    "test:e2e": "pnpm --filter h1-quiet-luxury test:e2e"
   },
   "devDependencies": {
     "create-next-app": "16.3.5"

@@ -12,10 +12,12 @@ import {
 } from "react";
 import {
   useForm,
+  useFormState,
   type DefaultValues,
   type FieldValues,
   type Resolver,
   type UseFormReturn,
+  type UseFormStateReturn,
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -87,6 +89,21 @@ export function useFormKit<T extends z.ZodType>() {
   const ctx = useContext(FormKitContext);
   if (!ctx) throw new Error("useFormKit must be used inside <FormKit>");
   return ctx as unknown as FormKitValue<z.infer<T> & FieldValues>;
+}
+
+/**
+ * Reactive form state (errors, isSubmitting, …) for a field component.
+ *
+ * `form.formState` read directly from `useFormKit` is a snapshot and will not
+ * re-render a child component when validation runs. This hook subscribes the
+ * calling component to state changes via react-hook-form's `useFormState`, so
+ * error messages appear as soon as they are set.
+ */
+export function useFormKitState<T extends z.ZodType>() {
+  const { form } = useFormKit<T>();
+  return useFormState({ control: form.control as never }) as UseFormStateReturn<
+    z.infer<T> & FieldValues
+  >;
 }
 
 export interface FieldProps {
