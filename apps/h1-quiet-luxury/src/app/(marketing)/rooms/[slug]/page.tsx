@@ -98,13 +98,15 @@ export default async function RoomPage({ params }: Props) {
         <Container className="py-14 md:py-16">
           <div className="grid gap-8 md:grid-cols-2">
             {details.map((d) => (
-              <Img
-                key={d.key}
-                src={d.url}
-                alt={d.alt}
-                ratio={4 / 3}
-                sizes="(min-width: 768px) 50vw, 100vw"
-              />
+              <div key={d.key} className="group">
+                <Img
+                  src={d.url}
+                  alt={d.alt}
+                  ratio={4 / 3}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  imgClassName="img-settle"
+                />
+              </div>
             ))}
           </div>
         </Container>

@@ -17,6 +17,8 @@ export const HOME = {
     { value: "1", label: "seating, one restaurant" },
     { value: "6:00", label: "the pool opens" },
   ],
+  manifesto:
+    "The lake does the rest. It sets the light, it sets the temperature, it sets the pace.",
   visitLabel: "Getting here",
   visitTitle: "Twenty minutes from the airport",
   visitBody:

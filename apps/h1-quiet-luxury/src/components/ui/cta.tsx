@@ -27,8 +27,9 @@ export function Cta({ href, children, variant = "primary", tone = "dark", classN
   return (
     <Link
       href={href}
+      data-cta
       className={cx(
-        "inline-block border-b pb-1 text-[13px] uppercase tracking-[0.18em] transition-colors",
+        "inline-block border-b pb-1 text-[13px] uppercase tracking-[0.18em]",
         TONES[tone][variant],
         className
       )}

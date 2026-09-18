@@ -40,7 +40,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               className={cx(
-                "text-[11px] uppercase tracking-[0.18em] transition-colors",
+                "link-underline text-[11px] uppercase tracking-[0.18em] transition-colors",
                 pathname === item.href ? "text-bronze-deep" : "text-ink/70 hover:text-ink"
               )}
             >

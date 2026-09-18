@@ -28,12 +28,13 @@ export default function GalleryPage() {
             {GALLERY.map((g, i) => {
               const img = image(g.image);
               return (
-                <Reveal key={g.image} className={i % 4 === 1 ? "md:mt-16" : undefined}>
+                <Reveal key={g.image} className={`group ${i % 4 === 1 ? "md:mt-16" : ""}`}>
                   <Img
                     src={img.url}
                     alt={img.alt}
                     ratio={4 / 3}
                     sizes="(min-width: 768px) 50vw, 100vw"
+                    imgClassName="img-settle"
                   />
                   <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-bronze-deep">
                     {g.caption}

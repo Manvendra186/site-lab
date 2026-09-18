@@ -62,9 +62,9 @@ export default function Home() {
       {/* Facts — a quiet row, not cards */}
       <section className="border-y border-stone bg-mist">
         <Container className="py-14 md:py-16">
-          <div className="grid grid-cols-2 gap-y-10 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-y-10 md:grid-cols-4 md:divide-x md:divide-stone">
             {HOME.facts.map((f) => (
-              <div key={f.label} className="px-2 text-center md:px-6">
+              <div key={f.label} className="px-2 text-center md:px-8">
                 <p className="font-display text-4xl font-light md:text-5xl">{f.value}</p>
                 <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-bronze-deep">
                   {f.label}
@@ -85,12 +85,13 @@ export default function Home() {
               return (
                 <Reveal key={room.slug}>
                   <div className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
-                    <div className={i % 2 === 1 ? "md:order-2" : undefined}>
+                    <div className={`group ${i % 2 === 1 ? "md:order-2" : ""}`}>
                       <Img
                         src={img.url}
                         alt={img.alt}
                         ratio={4 / 3}
                         sizes="(min-width: 768px) 50vw, 100vw"
+                        imgClassName="img-settle"
                       />
                     </div>
                     <div>
@@ -114,6 +115,18 @@ export default function Home() {
               All six rooms
             </Cta>
           </div>
+        </Container>
+      </section>
+
+      {/* Manifesto — a single dark, cinematic statement (the day/night rhythm) */}
+      <section className="bg-ink text-paper">
+        <Container className="py-24 md:py-36">
+          <Reveal className="mx-auto max-w-3xl text-center">
+            <div aria-hidden="true" className="mx-auto mb-10 h-px w-12 bg-bronze" />
+            <p className="font-display text-3xl font-light leading-snug tracking-tight md:text-5xl">
+              {HOME.manifesto}
+            </p>
+          </Reveal>
         </Container>
       </section>
 

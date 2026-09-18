@@ -12,7 +12,7 @@ import { RESERVE_HREF } from "@/data/site.config";
 export function Hero() {
   const img = image("hero");
   return (
-    <section className="relative h-[72vh] min-h-[520px] w-full overflow-hidden md:h-[88vh]">
+    <section className="relative h-[80vh] min-h-[560px] w-full overflow-hidden md:h-screen">
       <Img
         src={img.url}
         alt={img.alt}
@@ -22,7 +22,8 @@ export function Hero() {
         className="absolute inset-0 h-full w-full"
         imgClassName="hero-settle"
       />
-      <div aria-hidden="true" className="absolute inset-0 bg-ink/45" />
+      {/* Soft bottom-up scrim — functional legibility for the text, not a decorative gradient. */}
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/30 to-ink/10" />
       <Container className="absolute inset-x-0 bottom-0 pb-14 md:pb-20">
         <div className="max-w-2xl text-paper">
           <Label className="text-paper/75">{HOME.heroLabel}</Label>
@@ -43,6 +44,14 @@ export function Hero() {
           </div>
         </div>
       </Container>
+      {/* Quiet scroll cue — a hairline, on-brand. Desktop only (mobile has the reserve bar). */}
+      <div
+        aria-hidden="true"
+        className="absolute bottom-8 right-8 hidden flex-col items-center gap-3 md:flex"
+      >
+        <span className="text-[10px] uppercase tracking-[0.22em] text-paper/60">Scroll</span>
+        <span className="h-10 w-px bg-paper/40" />
+      </div>
     </section>
   );
 }

@@ -21,7 +21,7 @@ export function Footer() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-ink/70 transition-colors hover:text-ink"
+                  className="link-underline text-ink/70 transition-colors hover:text-ink"
                 >
                   {item.label}
                 </Link>
@@ -29,7 +29,7 @@ export function Footer() {
             </div>
             <div className="grid gap-3">
               <p className="text-[11px] uppercase tracking-[0.18em] text-bronze-deep">Visit</p>
-              <Link href={RESERVE_HREF} className="text-ink/70 transition-colors hover:text-ink">
+              <Link href={RESERVE_HREF} className="link-underline text-ink/70 transition-colors hover:text-ink">
                 Reserve a stay
               </Link>
               <a

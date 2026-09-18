@@ -41,6 +41,7 @@ export default function RoomsPage() {
                         alt={img.alt}
                         ratio={4 / 3}
                         sizes="(min-width: 768px) 45vw, 100vw"
+                        imgClassName="img-settle"
                       />
                     </div>
                     <div>
