@@ -15,3 +15,5 @@ Format: `#N — date — decision — rationale`. Decisions are final unless the
 #11 — 2026-09-18 — H1 brand: **Sthira**, Udaipur (Rajasthan) — Sanskrit for steadiness/stillness; fits the Quiet Luxury Retreat direction; demo contact details marked as demo.
 #12 — 2026-09-18 — H1 palette: paper `#F4F0E8` / ink `#1C1B18` / mist `#E9E4D8` / stone `#D8D2C4` / bronze `#8A6F4D` (large text only) / bronze-deep `#6B5233` (text-safe accent) — Aman DNA stillness; bronze-deep used where small text needs 4.5:1.
 #13 — 2026-09-18 — H1 type: Cormorant Garamond (display) + Instrument Sans (body) via next/font — one display + one UI family max (Bible §5.1).
+#14 — 2026-09-18 — H1 "14 rooms" is neutral brand copy (brief §Trust); the 6 room detail pages are the featured room *types*, not a data mismatch — intentional, do not "fix" to 14 pages.
+#15 — 2026-09-18 — Shared form-kit typing: `useFormKit` uses `z.infer<T> & FieldValues` and casts the zod resolver + default values (importing `Resolver`/`DefaultValues` from react-hook-form) to satisfy RHF — latent type bug surfaced only because H1 consumes the kit; index app unaffected (does not import @site-lab/shared).

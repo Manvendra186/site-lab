@@ -10,7 +10,13 @@ import {
   type ReactElement,
   type ReactNode,
 } from "react";
-import { useForm, type FieldValues, type UseFormReturn } from "react-hook-form";
+import {
+  useForm,
+  type DefaultValues,
+  type FieldValues,
+  type Resolver,
+  type UseFormReturn,
+} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
@@ -42,9 +48,9 @@ export function FormKit<T extends z.ZodType>({
   onSubmit,
   children,
 }: FormKitProps<T>) {
-  const form = useForm<z.infer<T>>({
-    resolver: zodResolver(schema),
-    defaultValues,
+  const form = useForm<z.infer<T> & FieldValues>({
+    resolver: zodResolver(schema as never) as unknown as Resolver<z.infer<T> & FieldValues>,
+    defaultValues: defaultValues as DefaultValues<z.infer<T> & FieldValues>,
     mode: "onBlur",
   });
   const [status, setStatus] = useState<Status>("idle");
@@ -71,7 +77,7 @@ export function FormKit<T extends z.ZodType>({
   const value = useMemo(() => ({ form, status, submitError, submit }), [form, status, submitError, submit]);
 
   return (
-    <FormKitContext.Provider value={value as FormKitValue<never>}>
+    <FormKitContext.Provider value={value as unknown as FormKitValue<never>}>
       {children}
     </FormKitContext.Provider>
   );
@@ -80,7 +86,7 @@ export function FormKit<T extends z.ZodType>({
 export function useFormKit<T extends z.ZodType>() {
   const ctx = useContext(FormKitContext);
   if (!ctx) throw new Error("useFormKit must be used inside <FormKit>");
-  return ctx as unknown as FormKitValue<z.infer<T>>;
+  return ctx as unknown as FormKitValue<z.infer<T> & FieldValues>;
 }
 
 export interface FieldProps {
