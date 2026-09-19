@@ -1,0 +1,40 @@
+import Link from "next/link";
+import type { ReactNode } from "react";
+import { cx } from "@/lib/utils";
+
+interface CtaProps {
+  href: string;
+  children: ReactNode;
+  variant?: "primary" | "ghost";
+  /** dark = on light backgrounds (default); light = over photography. */
+  tone?: "dark" | "light";
+  className?: string;
+}
+
+const TONES = {
+  dark: {
+    primary: "border-fern-deep text-fern-deep hover:border-ink hover:text-ink",
+    ghost: "border-transparent text-fern-deep hover:border-fern-deep hover:text-ink",
+  },
+  light: {
+    primary: "border-paper text-paper hover:border-paper/60 hover:text-paper/80",
+    ghost: "border-transparent text-paper/80 hover:border-paper/60 hover:text-paper",
+  },
+} as const;
+
+/** Quiet text CTA — a dotted leader underline, never a button block. */
+export function Cta({ href, children, variant = "primary", tone = "dark", className }: CtaProps) {
+  return (
+    <Link
+      href={href}
+      data-cta
+      className={cx(
+        "inline-block border-b border-dotted pb-1 text-[13px] uppercase tracking-[0.18em]",
+        TONES[tone][variant],
+        className
+      )}
+    >
+      {children}
+    </Link>
+  );
+}

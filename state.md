@@ -1,36 +1,35 @@
 # STATE — single source of truth
 
-Last updated: 2026-09-18 (session 3)
-Phase: 1 — Pilot (H1)
-Current site: H1 — Sthira (quiet luxury retreat, Udaipur)
-Current step: H1 built + verified + QA gate passed (12/12) + test coverage added; committed
-  [x] Root workspace files (package.json, pnpm-workspace, tsconfig.base, prettier, editorconfig, gitignore)
-  [x] AGENTS.md + memory/ system (PROTOCOL, PROGRESS, DECISIONS, CONVENTIONS)
-  [x] docs/briefs/TEMPLATE.md + H1 brief (briefed)
-  [x] scripts/dev-all.mjs
-  [x] packages/shared (thin primitives: Img, Reveal, form kit, seo, Container)
-  [x] apps/index (30-Site Test dashboard)
-  [x] apps/h1-quiet-luxury scaffold + full build
-  [x] pnpm install + build + lint + typecheck verified (H1 + index)
-  [x] git init + first commit (Phase 0)
-  [x] H1: lint/typecheck/build clean, 22 SSG routes, 404 verified, QA gate 12/12
-  [x] H1: build log (docs/build-logs/H1.md) + state + PROGRESS updated + committed
-  [x] Test stack: Vitest+Testing Library (shared unit, 33 pass) + Playwright (H1 smoke, 11 pass)
-  [x] Fixed H1 reserve form (reactive useFormKitState + real onSubmit) — found by the smoke tests
-  [x] pnpm-workspace.yaml: allow esbuild build (pnpm 11 build policy)
-NEXT ACTION: user reviews H1 as the Phase 1 quality bar; on approval, start H2 (Understory, nature-as-brand).
+Last updated: 2026-09-19 (session 4)
+Phase: 2 — Rollout (H2 done → H3 next)
+Current site: H2 — Understory (nature-as-brand forest lodge, Coorg/Kodagu) — **done**
+Current step: H2 complete — all gates green, QA gate 12/12, overlap check vs H1 passed, build log written
+  [x] H1: built + verified + QA gate passed (12/12) + tests (33 unit / 11 smoke) — user approved as quality bar
+  [x] H1 session-4 polish commits (image treatment, luxury elevation) — verified still clean this session
+  [x] H2: brief (docs/briefs/H2.md)
+  [x] H2: image collection + verification + manifest (docs/assets/H2.md)
+  [x] H2: scaffold apps/h2-nature-brand (port 3002)
+  [x] H2: data model + shell + pages
+  [x] H2: lint/typecheck/build + e2e (lint 0 / typecheck 0 / build 0, 18 routes; 30 e2e + 33 unit pass)
+  [x] H2: QA gate 12/12 + overlap check vs H1 + build log (docs/build-logs/H2.md)
+  [x] H2: state/PROGRESS/DECISIONS updated + committed
+NEXT ACTION: H2 done. Next site is H3 — The Alkari (Heritage Grandeur, port 3003): write docs/briefs/H3.md,
+  then collect + verify images, then build. (Await user go-ahead to start H3.)
 Open items:
-- Visual/interactive QA (exact 360px render, form interaction, motion timing) verified via code review +
-  SSG HTML inspection + Playwright smoke tests (no screenshot tooling in this environment).
+- state.md was one session behind git (session-4 H1 polish commits unrecorded) — reconciled now.
+- Visual/interactive QA verified via code review + SSG HTML inspection + Playwright smoke tests (no screenshot tooling).
 - 30-Site Test overlap check runs after each subsequent site (H1 is the baseline).
 Recent log:
-- Session 3: Added test coverage. Vitest 4 + Testing Library (jsdom) for packages/shared (33 unit tests:
-  seo, form kit, image, reveal, container). Playwright (Chromium) for H1 smoke tests (11 tests: home,
-  reserve form, routes, 404). Root `pnpm test` runs both. Smoke tests surfaced a real H1 bug — the reserve
-  form read a stale `form.formState` snapshot and had no submit handler, so validation errors never rendered.
-  Fixed by adding `useFormKitState` (wraps RHF `useFormState`) to the shared kit and wiring the form to
-  `<form onSubmit={form.handleSubmit(...)}>`. Allowed esbuild build in pnpm-workspace.yaml (pnpm 11).
-  Verified: shared unit 33 pass, H1 smoke 11 pass, lint/typecheck/build all exit 0.
+- Session 4 (2026-09-19): User approved H1 as the Phase 1 quality bar → started H2 (Understory,
+  nature-as-brand). Re-verified H1 from clean state: lint/typecheck/build all exit 0, 22 routes.
+  H2 direction: forest lodge in Coorg (Kodagu, Karnataka); field-guide/herbarium identity —
+  specimen numbers, dotted leaders, deep forest greens, Fraunces + Archivo, "drift" motion.
+  Distinct from H1 (cream/bronze, hairlines, Cormorant, "settle").
+  **H2 completed this session:** all marketing pages built + data reconciled; fixed Next 16 `params`
+  Promise on the two dynamic routes (dev SSR 404'd under Playwright); added 30 Playwright e2e tests
+  (smoke/routes/reserve/home) — all pass; lint 0 / typecheck 0 / build 0 (18 routes); 33 shared unit
+  tests pass; QA gate 12/12; overlap check vs H1 passed (clearly distinct); build log written
+  (docs/build-logs/H2.md); state/PROGRESS/DECISIONS updated + committed.
 - Session 2: H1 pilot completed. Fixed shared form-kit RHF type error (z.infer<T> & FieldValues +
   Resolver/DefaultValues casts), layout children typing, header mobile-menu effect (lint), gallery ratio,
   contact/footer centralized data. Re-verified lint/typecheck/build (all exit 0, 22 routes). Verified 404

@@ -6,7 +6,7 @@ Update this table + `state.md` at every heartbeat.
 | ID | Brand (proposed) | Niche | Direction | Status | Port | App |
 |----|------------------|-------|-----------|--------|------|-----|
 | H1 | Sthira | Hotel | Quiet Luxury Retreat | done | 3001 | h1-quiet-luxury |
-| H2 | Understory | Hotel | Nature as Brand | planned | 3002 | h2-nature-brand |
+| H2 | Understory | Hotel | Nature as Brand | done | 3002 | h2-nature-brand |
 | H3 | The Alkari | Hotel | Heritage Grandeur | planned | 3003 | h3-heritage-grandeur |
 | H4 | Nocturne | Hotel | Cinematic Boutique | planned | 3004 | h4-cinematic-boutique |
 | H5 | Safar | Hotel | Experiential Escape | planned | 3005 | h5-experiential-escape |
