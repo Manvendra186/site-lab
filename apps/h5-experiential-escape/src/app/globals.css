@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+/*
+ * H5 — Safar · design tokens.
+ *
+ * Palette (brief-locked): ice (bg) / slate (ink) / mist (surface) / stone (border)
+ * / sky (high-altitude blue, large + decorative only) / sky-deep (text-safe accent)
+ * / earth (Ladakh earth, large + decorative only) / error.
+ *
+ * Type: Unbounded (display) + Manrope (body).
+ * Motion: "the ascent" (slow rise) — see .hero-ascent and the Ascent component.
+ */
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Unbounded", "Arial", sans-serif;
+
+  --color-ice: #eef1f4;
+  --color-mist: #dce3ea;
+  --color-stone: #b8c2cc;
+  --color-slate: #232b36;
+  --color-sky: #2e5a7a;
+  --color-sky-deep: #24485f;
+  --color-earth: #b5623a;
+  --color-error: #a8442e;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-ice);
+  color: var(--color-slate);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background-color: var(--color-sky);
+  color: var(--color-ice);
+}
+
+/* Visible focus (brief: accessibility) */
+:focus-visible {
+  outline: 2px solid var(--color-sky-deep);
+  outline-offset: 3px;
+}
+
+/* Skip link (brief: accessibility) */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  background: var(--color-sky-deep);
+  color: var(--color-ice);
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Containers (shared Container resolves widths here) */
+[data-container] {
+  margin-inline: auto;
+  width: 100%;
+  padding-inline: 1.5rem;
+}
+[data-container="default"] {
+  max-width: 72rem;
+}
+[data-container="wide"] {
+  max-width: 92rem;
+}
+[data-container="narrow"] {
+  max-width: 44rem;
+}
+@media (min-width: 768px) {
+  [data-container] {
+    padding-inline: 3rem;
+  }
+}
+
+/* Image treatment — cool, high-altitude light */
+[data-img] > img {
+  filter: saturate(0.9) contrast(1.03);
+}
+
+/*
+ * Form kit (shared package renders [data-field], [data-status], …).
+ * Inputs and the submit button are styled with Tailwind in the form itself;
+ * these rules cover the label / hint / error / success chrome.
+ */
+[data-field] {
+  display: grid;
+  gap: 0.4rem;
+}
+[data-field] > label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-slate);
+}
+[data-field] > label span {
+  color: var(--color-sky-deep);
+}
+[data-field-hint] {
+  font-size: 0.8rem;
+  color: color-mix(in srgb, var(--color-slate) 60%, transparent);
+}
+[data-field-error] {
+  font-size: 0.8rem;
+  color: var(--color-error);
+}
+[data-status]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+[data-form-success] {
+  border: 1px solid var(--color-sky-deep);
+  background: color-mix(in srgb, var(--color-sky-deep) 8%, transparent);
+  padding: 1rem 1.25rem;
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 1rem;
+}
+[data-form-success] strong {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--color-slate);
+}
+[data-form-success] p {
+  font-size: 0.9rem;
+  color: color-mix(in srgb, var(--color-slate) 80%, transparent);
+}
+[data-form-error] {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--color-error);
+}
+
+/*
+ * "The ascent" — the H5 hero signature.
+ * A slow, deliberate rise (translateY 24px → 0 + opacity), like climbing out of the valley.
+ */
+@keyframes hero-ascent {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-ascent {
+  animation: hero-ascent 2.4s cubic-bezier(0.22, 1, 0.36, 1) 1 both;
+}
+
+/*
+ * No-JS / reduced-motion safety.
+ * The Ascent component sets inline styles only when JS is present; without JS
+ * (html:not(.js)) we force reveals visible so content is never hidden.
+ */
+html:not(.js) [data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero-ascent {
+    animation: none;
+  }
+  [data-reveal] {
+    transition: none !important;
+  }
+}

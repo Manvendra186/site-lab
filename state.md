@@ -1,9 +1,9 @@
 # STATE — single source of truth
 
-Last updated: 2026-09-19 (session 6)
-Phase: 2 — Rollout (H1 + H2 + H3 + H4 done → H5 in progress)
-Current site: H5 — Safar (Experiential Escape) — **brief + assets + scaffold next**
-Current step: H4 complete (QA gate 12/12 + overlap check vs H1/H2/H3 + build log docs/build-logs/H4.md + state/PROGRESS/DECISIONS updated). Now H5 (Safar, Experiential Escape): write docs/briefs/H5.md, collect + verify images (docs/assets/H5.md), scaffold apps/h5-experiential-escape (port 3005), build data model + shell + pages.
+Last updated: 2026-09-19 (session 7)
+Phase: 2 — Rollout (H1 + H2 + H3 + H4 + H5 done → all five sites complete)
+Current site: H5 — Safar (Experiential Escape) — **complete (QA gate 12/12 + overlap check vs H1/H2/H3/H4 + build log)**
+Current step: H5 complete (QA gate 12/12 + overlap check vs H1/H2/H3/H4 + build log docs/build-logs/H5.md + state updated). All five sites (H1–H5) are built, verified, and committed.
   [x] H1: built + verified + QA gate passed (12/12) + tests (33 unit / 11 smoke) — user approved as quality bar
   [x] H1 session-4 polish commits (image treatment, luxury elevation) — verified still clean this session
   [x] H2: brief (docs/briefs/H2.md)
@@ -27,19 +27,28 @@ Current step: H4 complete (QA gate 12/12 + overlap check vs H1/H2/H3 + build log
   [x] H4: lint/typecheck/build + e2e (lint 0 / typecheck 0 / build 0, 13 routes; 3 e2e pass)
   [x] H4: QA gate 12/12 + overlap check vs H1/H2/H3 + build log (docs/build-logs/H4.md)
   [x] H4: state/PROGRESS/DECISIONS updated + committed
-  [ ] H5: brief (docs/briefs/H5.md) — Safar, experiential escape — NEXT
-  [ ] H5: image collection + verification + manifest (docs/assets/H5.md)
-  [ ] H5: scaffold apps/h5-experiential-escape (port 3005)
-  [ ] H5: data model + shell + pages (await params on all dynamic routes from the start, decision #18)
-  [ ] H5: lint/typecheck/build + e2e
-  [ ] H5: QA gate 12/12 + overlap check vs H1/H2/H3/H4 + build log (docs/build-logs/H5.md)
-  [ ] H5: state/PROGRESS/DECISIONS updated + committed
-NEXT ACTION: H5 (Safar, Experiential Escape) — write docs/briefs/H5.md (all 22 fields + creative direction + mood board), then collect + verify images (docs/assets/H5.md), then complete the scaffold apps/h5-experiential-escape (port 3005) with data model + shell + pages. Use `await params` on all dynamic routes from the start (decision #18).
+  [x] H5: brief (docs/briefs/H5.md) — Safar, experiential escape, Leh/Ladakh; ice/slate/sky/earth; Unbounded + Manrope; "the ascent" motion; waypoint/stage-label motif
+  [x] H5: image collection + verification + manifest (docs/assets/H5.md)
+  [x] H5: scaffold apps/h5-experiential-escape (port 3005)
+  [x] H5: data model + shell + pages (await params on the dynamic stay route from the start, decision #18)
+  [x] H5: lint/typecheck/build + e2e (lint 0 / typecheck 0 / build 0, 15 pages; 3 e2e pass)
+  [x] H5: QA gate 12/12 + overlap check vs H1/H2/H3/H4 + build log (docs/build-logs/H5.md)
+  [x] H5: state updated + committed
+NEXT ACTION: All five sites (H1–H5) are complete, verified, and committed. Phase 2 rollout is done. Next: await user direction (e.g. Phase 3, a 30-site expansion, or a cross-site review).
 Open items:
 - state.md was one session behind git (session-4 H1 polish commits unrecorded) — reconciled in session 4.
 - Visual/interactive QA verified via code review + SSG HTML inspection + Playwright smoke tests (no screenshot tooling).
-- 30-Site Test overlap check runs after each subsequent site (H1 is the baseline; H2 vs H1, H3 vs H1/H2, H4 vs H1/H2/H3 all passed).
+- 30-Site Test overlap check runs after each subsequent site (H1 is the baseline; H2 vs H1, H3 vs H1/H2, H4 vs H1/H2/H3, H5 vs H1/H2/H3/H4 all passed).
 Recent log:
+- Session 7 (2026-09-19): H5 (Safar, Experiential Escape, Leh/Ladakh) completed. Closed the
+  accessibility/CSS gap: the shared-component host CSS (Container `[data-container]`, form kit
+  `[data-field]`/`[data-status]`/`[data-form-success]`, image treatment `[data-img]`, `:focus-visible`,
+  `.skip-link`) was missing from H5's `globals.css` — added it. Re-verified from a clean `.next`:
+  lint 0 / typecheck 0 / build 0 (15 pages: 9 static + 5 SSG stay routes). Confirmed all required
+  selectors are present in the production CSS bundle (Node check of the built `.css` chunk).
+  Playwright reserve e2e 3/3 pass (port 4177). QA gate 12/12; overlap check vs H1/H2/H3/H4 passed
+  (clearly distinct — the only cool light-first high-altitude blue site); build log written
+  (docs/build-logs/H5.md); state updated + committed. **All five sites (H1–H5) are now complete.**
 - Session 6 (2026-09-19): H4 (Nocturne, Cinematic Boutique, Mumbai) built + validated + QA gate passed.
   Brief (docs/briefs/H4.md) + assets (docs/assets/H4.md) + scaffold (port 3004) + data model +
   all pages (13 content routes: home, house, rooms, 5 room details, bar, projection, archive,
