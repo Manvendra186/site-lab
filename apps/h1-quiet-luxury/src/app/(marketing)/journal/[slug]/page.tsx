@@ -42,7 +42,7 @@ export default async function JournalPostPage({ params }: Props) {
         ratio={16 / 9}
         eager
         sizes="100vw"
-        className="h-[50vh] min-h-[340px] w-full"
+        className="h-[50vh] min-h-[340px] w-full img-bleed"
       />
       <article className="py-16 md:py-24">
         <Container size="narrow">

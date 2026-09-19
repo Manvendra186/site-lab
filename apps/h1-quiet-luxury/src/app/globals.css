@@ -254,3 +254,62 @@ a:hover .img-settle {
   }
 }
 
+/* ------------------------------------------------------------------ */
+/* Image treatment — a cohesive, curated, quiet-luxury look            */
+/* ------------------------------------------------------------------ */
+
+/* Color grade: a subtle warm, filmic grade so the varied source photos
+   read as one considered set rather than a stock-photo collage. */
+[data-img] > img {
+  filter: saturate(0.9) contrast(1.06) brightness(1.02) sepia(0.05);
+  transition: filter 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Fine inset frame — a matted-print hairline, set in from the edge. */
+[data-img]::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid color-mix(in srgb, var(--color-ink) 16%, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Gentle depth — a soft radial vignette for a cinematic, considered feel. */
+[data-img]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    120% 120% at 50% 45%,
+    transparent 55%,
+    color-mix(in srgb, var(--color-ink) 9%, transparent) 100%
+  );
+}
+
+/* Hover bloom — the image warms and brightens slightly as it settles. */
+.group:hover [data-img] > img,
+a:hover [data-img] > img {
+  filter: saturate(0.96) contrast(1.09) brightness(1.05) sepia(0.03);
+}
+
+/* Full-bleed images (hero, cinematic) — no inset frame, a soft bottom scrim. */
+.img-bleed::before {
+  display: none;
+}
+.img-bleed::after {
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--color-ink) 18%, transparent) 0%,
+    transparent 45%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-img] > img {
+    transition: none;
+  }
+}
+

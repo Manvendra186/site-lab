@@ -80,7 +80,7 @@ export function Reveal({
   as: Tag = "div",
   className,
   delay = 0,
-  y = 18,
+  y = 28,
   duration = 900,
 }: RevealProps) {
   const reduced = usePrefersReducedMotion();

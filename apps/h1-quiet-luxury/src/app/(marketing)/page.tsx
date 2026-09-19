@@ -63,13 +63,13 @@ export default function Home() {
       <section className="border-y border-stone bg-mist">
         <Container className="py-14 md:py-16">
           <div className="grid grid-cols-2 gap-y-10 md:grid-cols-4 md:divide-x md:divide-stone">
-            {HOME.facts.map((f) => (
-              <div key={f.label} className="px-2 text-center md:px-8">
+            {HOME.facts.map((f, i) => (
+              <Reveal key={f.label} delay={i * 90} className="px-2 text-center md:px-8">
                 <p className="font-display text-4xl font-light md:text-5xl">{f.value}</p>
                 <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-bronze-deep">
                   {f.label}
                 </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </Container>
@@ -83,7 +83,7 @@ export default function Home() {
             {preview.map((room, i) => {
               const img = image(room.image);
               return (
-                <Reveal key={room.slug}>
+                <Reveal key={room.slug} delay={i * 120}>
                   <div className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
                     <div className={`group ${i % 2 === 1 ? "md:order-2" : ""}`}>
                       <Img
@@ -137,17 +137,17 @@ export default function Home() {
           alt={expImg.alt}
           ratio={16 / 9}
           sizes="100vw"
-          className="h-[52vh] min-h-[360px] w-full"
+          className="h-[52vh] min-h-[360px] w-full img-bleed"
         />
         <Container className="py-14 md:py-16">
-          <div className="max-w-2xl">
+          <Reveal className="max-w-2xl">
             <Label>Experiences</Label>
             <h2 className="mt-4 font-display text-3xl font-light md:text-4xl">{exp.name}</h2>
             <p className="mt-4 text-base leading-7 text-ink/75">{exp.description}</p>
             <div className="mt-6">
               <Cta href="/experiences">The four experiences</Cta>
             </div>
-          </div>
+          </Reveal>
         </Container>
       </section>
 
@@ -155,16 +155,16 @@ export default function Home() {
       <section className="border-t border-stone bg-mist">
         <Container className="py-16 md:py-20">
           <div className="grid gap-10 md:grid-cols-2 md:gap-16">
-            <div>
+            <Reveal>
               <Label>{HOME.visitLabel}</Label>
               <h2 className="mt-4 font-display text-3xl font-light md:text-4xl">
                 {HOME.visitTitle}
               </h2>
-            </div>
-            <div className="flex flex-col justify-between gap-8">
+            </Reveal>
+            <Reveal delay={120} className="flex flex-col justify-between gap-8">
               <p className="max-w-md text-base leading-7 text-ink/75">{HOME.visitBody}</p>
               <Cta href="/contact">Reserve a stay</Cta>
-            </div>
+            </Reveal>
           </div>
         </Container>
       </section>

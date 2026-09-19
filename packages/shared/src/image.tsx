@@ -22,6 +22,7 @@ export interface ImgProps {
 export function Img({ src, alt, ratio = 4 / 3, className, imgClassName, eager, sizes }: ImgProps) {
   return (
     <span
+      data-img=""
       className={className}
       style={{ display: "block", position: "relative", overflow: "hidden", aspectRatio: `${ratio}` }}
     >

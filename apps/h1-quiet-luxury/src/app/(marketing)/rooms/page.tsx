@@ -30,7 +30,7 @@ export default function RoomsPage() {
             {ROOMS.map((room, i) => {
               const img = image(room.image);
               return (
-                <Reveal key={room.slug}>
+                <Reveal key={room.slug} delay={i * 80}>
                   <Link
                     href={`/rooms/${room.slug}`}
                     className="group grid gap-6 border-t border-stone py-10 md:grid-cols-2 md:items-center md:gap-12"

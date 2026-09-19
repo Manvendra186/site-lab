@@ -10,7 +10,7 @@ import { RESERVE_HREF } from "@/data/site.config";
  * one serif line, hairline, two text CTAs. The image settles 1.04 -> 1.00.
  */
 export function Hero() {
-  const img = image("hero");
+  const img = image("hero-palace");
   return (
     <section className="relative h-[80vh] min-h-[560px] w-full overflow-hidden md:h-screen">
       <Img
@@ -19,7 +19,7 @@ export function Hero() {
         ratio={16 / 9}
         eager
         sizes="100vw"
-        className="absolute inset-0 h-full w-full"
+        className="absolute inset-0 h-full w-full img-bleed"
         imgClassName="hero-settle"
       />
       {/* Soft bottom-up scrim — functional legibility for the text, not a decorative gradient. */}

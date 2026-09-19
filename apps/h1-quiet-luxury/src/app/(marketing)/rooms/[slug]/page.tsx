@@ -49,7 +49,7 @@ export default async function RoomPage({ params }: Props) {
         ratio={16 / 9}
         eager
         sizes="100vw"
-        className="h-[55vh] min-h-[380px] w-full"
+        className="h-[55vh] min-h-[380px] w-full img-bleed"
       />
       <section className="py-16 md:py-24">
         <Container>
@@ -97,8 +97,8 @@ export default async function RoomPage({ params }: Props) {
       <section className="border-t border-stone">
         <Container className="py-14 md:py-16">
           <div className="grid gap-8 md:grid-cols-2">
-            {details.map((d) => (
-              <div key={d.key} className="group">
+            {details.map((d, i) => (
+              <Reveal key={d.key} delay={i * 100} className="group">
                 <Img
                   src={d.url}
                   alt={d.alt}
@@ -106,7 +106,7 @@ export default async function RoomPage({ params }: Props) {
                   sizes="(min-width: 768px) 50vw, 100vw"
                   imgClassName="img-settle"
                 />
-              </div>
+              </Reveal>
             ))}
           </div>
         </Container>

@@ -28,7 +28,7 @@ export default function GalleryPage() {
             {GALLERY.map((g, i) => {
               const img = image(g.image);
               return (
-                <Reveal key={g.image} className={`group ${i % 4 === 1 ? "md:mt-16" : ""}`}>
+                <Reveal key={g.image} delay={i * 60} className={`group ${i % 4 === 1 ? "md:mt-16" : ""}`}>
                   <Img
                     src={img.url}
                     alt={img.alt}
