@@ -8,8 +8,8 @@ Update this table + `state.md` at every heartbeat.
 | H1 | Sthira | Hotel | Quiet Luxury Retreat | done | 3001 | h1-quiet-luxury |
 | H2 | Understory | Hotel | Nature as Brand | done | 3002 | h2-nature-brand |
 | H3 | The Alkari | Hotel | Heritage Grandeur | done | 3003 | h3-heritage-grandeur |
-| H4 | Nocturne | Hotel | Cinematic Boutique | planned | 3004 | h4-cinematic-boutique |
-| H5 | Safar | Hotel | Experiential Escape | planned | 3005 | h5-experiential-escape |
+| H4 | Nocturne | Hotel | Cinematic Boutique | done | 3004 | h4-cinematic-boutique |
+| H5 | Safar | Hotel | Experiential Escape | building | 3005 | h5-experiential-escape |
 | A1 | Studio Basalt | Architect | Project Monograph | planned | 3006 | a1-project-monograph |
 | A2 | Field & Form | Architect | Living Publication | planned | 3007 | a2-living-publication |
 | A3 | Index Studio | Architect | Smart Archive | planned | 3008 | a3-smart-archive |

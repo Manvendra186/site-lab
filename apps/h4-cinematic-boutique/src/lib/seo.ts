@@ -1,0 +1,21 @@
+import { buildMetadata, localBusinessSchema, type PageMeta } from "@site-lab/shared";
+import { site } from "@/data/site.config";
+
+export function pageMeta(page: PageMeta) {
+  return buildMetadata(site, page);
+}
+
+/** LodgingBusiness JSON-LD for the house. */
+export function lodgingSchema() {
+  return localBusinessSchema(site, {
+    checkinTime: "14:00",
+    checkoutTime: "12:00",
+    numberOfRooms: 12,
+    amenityFeature: [
+      { "@type": "LocationFeatureSpecification", name: "Breakfast", value: true },
+      { "@type": "LocationFeatureSpecification", name: "Private screening", value: true },
+      { "@type": "LocationFeatureSpecification", name: "The bar", value: true },
+      { "@type": "LocationFeatureSpecification", name: "The archive", value: true },
+    ],
+  });
+}

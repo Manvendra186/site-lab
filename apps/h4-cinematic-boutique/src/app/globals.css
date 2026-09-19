@@ -1,0 +1,275 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * Nocturne — H4 design system
+ * Dark, cinematic, Mumbai. "The night is the brand."
+ *   - charcoal / smoke / graphite surfaces, silver ink, tungsten accent
+ *   - Bebas Neue (display) + Space Grotesk (body + tabular timecodes)
+ *   - signature motif: sprocket-hole leader + timecode labels
+ *   - signature motion: "the flicker" (one-shot opacity flicker) + fade
+ * Fonts are self-hosted via next/font/google (see layout.tsx).
+ * ------------------------------------------------------------------ */
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bebas Neue", "Arial Narrow", sans-serif;
+
+  --color-charcoal: #101012;
+  --color-smoke: #161619;
+  --color-graphite: #242429;
+  --color-graphite-soft: #2e2e35;
+  --color-screen: #f2f1ec;
+  --color-silver: #b9b9c0;
+  --color-silver-dim: #8a8a92;
+  --color-tungsten: #d8b25a;
+  --color-tungsten-deep: #b98f3c;
+  --color-error: #d98a8a;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-charcoal);
+  color: var(--color-silver);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--color-tungsten);
+  color: var(--color-charcoal);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-tungsten);
+  outline-offset: 3px;
+}
+
+/* Skip link */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  background: var(--color-tungsten);
+  color: var(--color-charcoal);
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Containers (shared Container resolves widths here) */
+[data-container] {
+  margin-inline: auto;
+  width: 100%;
+  padding-inline: 1.5rem;
+}
+[data-container="default"] {
+  max-width: 72rem;
+}
+[data-container="wide"] {
+  max-width: 92rem;
+}
+[data-container="narrow"] {
+  max-width: 44rem;
+}
+@media (min-width: 768px) {
+  [data-container] {
+    padding-inline: 3rem;
+  }
+}
+
+/* Image treatment — cinematic, slightly desaturated, cool shadows */
+[data-img] > img {
+  filter: saturate(0.82) contrast(1.06) brightness(0.92);
+}
+
+/* ------------------------------------------------------------------ *
+ * Form kit (shared package renders [data-field], [data-status], …)
+ * A quiet, boxed field — no dotted leaders (H2), no hairline motif (H1).
+ * ------------------------------------------------------------------ */
+[data-field] {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+[data-field] > label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-tungsten);
+}
+[data-field] > label span {
+  color: var(--color-tungsten);
+}
+[data-field-hint] {
+  font-size: 0.8rem;
+  color: var(--color-silver-dim);
+}
+[data-field] input,
+[data-field] select,
+[data-field] textarea {
+  width: 100%;
+  background: var(--color-smoke);
+  border: 1px solid var(--color-graphite);
+  padding: 0.6rem 0.75rem;
+  font: inherit;
+  color: var(--color-screen);
+  transition: border-color 0.2s ease;
+}
+[data-field] input::placeholder,
+[data-field] textarea::placeholder {
+  color: var(--color-silver-dim);
+}
+[data-field] input:focus,
+[data-field] select:focus,
+[data-field] textarea:focus {
+  outline: none;
+  border-color: var(--color-tungsten);
+}
+[data-field] input[aria-invalid="true"],
+[data-field] select[aria-invalid="true"],
+[data-field] textarea[aria-invalid="true"] {
+  border-color: var(--color-error);
+}
+[data-field] select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b9b9c0' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.25rem;
+}
+[data-field] input[type="date"] {
+  color-scheme: dark;
+}
+[data-field] input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.8);
+  cursor: pointer;
+}
+[data-field-error] {
+  font-size: 0.8rem;
+  color: var(--color-error);
+}
+
+[data-form-success] {
+  border: 1px solid var(--color-tungsten);
+  background: color-mix(in srgb, var(--color-tungsten) 8%, transparent);
+  padding: 1rem 1.25rem;
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 1rem;
+}
+[data-form-success] strong {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--color-screen);
+}
+[data-form-success] p {
+  font-size: 0.9rem;
+  color: var(--color-silver);
+}
+[data-form-error] {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--color-error);
+}
+
+/* Submit button — a tungsten block, quiet. */
+[data-status] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-tungsten);
+  color: var(--color-charcoal);
+  padding: 0.85rem 1.6rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+[data-status]:hover {
+  background: var(--color-tungsten-deep);
+}
+[data-status]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ------------------------------------------------------------------ *
+ * The flicker — H4 signature hero motion (one-shot opacity flicker)
+ * ------------------------------------------------------------------ */
+@keyframes flicker {
+  0% {
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.4;
+  }
+  11% {
+    opacity: 0.12;
+  }
+  16% {
+    opacity: 0.6;
+  }
+  20% {
+    opacity: 0.28;
+  }
+  27% {
+    opacity: 0.85;
+  }
+  33% {
+    opacity: 0.6;
+  }
+  45% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.flicker {
+  animation: flicker 1.5s steps(1, end) 1 both;
+}
+
+/* ------------------------------------------------------------------ *
+ * Reduced motion — disable the flicker and all transitions
+ * ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .flicker {
+    animation: none;
+    opacity: 1;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * No-JS fallback — reveal elements must be visible without JS
+ * ------------------------------------------------------------------ */
+html:not(.js) [data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+}
